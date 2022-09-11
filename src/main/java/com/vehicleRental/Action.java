@@ -2,6 +2,7 @@ package com.vehicleRental;
 
 import com.vehicleRental.request.Request;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class Action {
     }
 
     private static void addVehicle(Request request) {
-        VehicleHelper.getInstance().addVehicle(request.targetBranch, request.otherArguments[0], request.otherArguments[1], Integer.parseInt(request.otherArguments[3]));
+        VehicleHelper.getInstance().addVehicle(request.targetBranch, request.otherArguments[0], request.otherArguments[1], Integer.parseInt(request.otherArguments[2]));
     }
 
     private static void addBranch(Request request) {
@@ -54,6 +55,7 @@ public class Action {
     static private Map<String, ActionType> actionTypeMap;
 
     static {
+        actionTypeMap = new HashMap<>();
         for (ActionType value : ActionType.values()) {
             actionTypeMap.put(value.name(), value);
         }

@@ -1,6 +1,8 @@
 package com.vehicleRental;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ public class Vehicle {
     static private Map<String, VehicleType> vehicleTypeMap;
 
     static {
+        vehicleTypeMap = new HashMap<>();
         for (VehicleType value : VehicleType.values()) {
             vehicleTypeMap.put(value.name(), value);
         }
@@ -52,6 +55,7 @@ public class Vehicle {
         vehicle.id = builder.id;
         vehicle.price = builder.price;
         vehicle.type = builder.type;
+        vehicle.bookingTimeStampList = new ArrayList<>();
         return vehicle;
     }
 

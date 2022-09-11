@@ -1,6 +1,5 @@
 package com.vehicleRental;
 
-import jdk.vm.ci.meta.Local;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,6 +45,9 @@ public class BookingHelper {
         String branchId = newBooking.branchId;
         VehicleType vehicleType = newBooking.vehicleType;
         List<Vehicle> vehicleList = BranchHelper.getInstance().getAllowedVehicles(branchId);
+        if(vehicleList == null){
+            return null;
+        }
         for (Vehicle vehicle : vehicleList) {
             if(vehicle.type.equals(vehicleType)){
                 boolean isAnyTimestampOverlapping = false;
@@ -67,6 +69,9 @@ public class BookingHelper {
     public List<Vehicle> getAllEligibleVehicles(String branchId, int startTime, int endTime){
         List<Vehicle> vehicleList = BranchHelper.getInstance().getAllowedVehicles(branchId);
         List<Vehicle> filteredVehicleList = new ArrayList<>();
+        if(vehicleList == null){
+            return filteredVehicleList;
+        }
         for (Vehicle vehicle : vehicleList) {
             boolean isAnyTimestampOverlapping = false;
             for (Vehicle.BookingTimeStamp bookingTimeStamp : vehicle.bookingTimeStampList) {
