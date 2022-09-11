@@ -28,6 +28,7 @@ public class VehicleHelper {
                 .addVehicleType(vehicleType));
         instance.vehicleIdToVehicleObjMap.put(vehicleId, newVehicle);
         instance.vehicleIdToBranchMap.put(newVehicle.id, targetBranch);
+        BranchHelper.getInstance().addVehicleInABranch(targetBranch, newVehicle);
     }
 
 

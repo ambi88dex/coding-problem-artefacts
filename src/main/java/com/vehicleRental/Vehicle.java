@@ -1,5 +1,7 @@
 package com.vehicleRental;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 public class Vehicle {
@@ -7,6 +9,7 @@ public class Vehicle {
     int price;
     String id;
     VehicleType type;
+    List<BookingTimeStamp> bookingTimeStampList;
 
     static private Map<String, VehicleType> vehicleTypeMap;
 
@@ -50,6 +53,16 @@ public class Vehicle {
         vehicle.price = builder.price;
         vehicle.type = builder.type;
         return vehicle;
+    }
+
+    static class BookingTimeStamp{
+        int startTime;
+        int endTime;
+
+        public BookingTimeStamp(int startTime, int endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
     }
 
 

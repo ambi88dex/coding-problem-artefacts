@@ -2,6 +2,7 @@ package com.vehicleRental;
 
 import com.vehicleRental.request.Request;
 
+import java.util.List;
 import java.util.Map;
 
 public class Action {
@@ -21,13 +22,25 @@ public class Action {
             case BOOK:
                 addBooking(request);
                 break;
+
+            case DISPLAY_VEHICLES:
+                displayVehicles(request);
             default:
                 System.out.println("No Correct action found");
                 break;
         }
     }
 
-    private static void addBooking(Request request) {
+    private static void displayVehicles(Request request) {
+        List<Vehicle> vehicles = BookingHelper.getInstance().getAllEligibleVehicles(request.targetBranch,Integer.parseInt(request.otherArguments[0]), Integer.parseInt(request.otherArguments[1]));
+        System.out.println("DISPLAYING VEHICLES AS PER REQUEST");
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(vehicle.id);
+        }
+    }
+
+    private static void addBooking(Request request){
+        BookingHelper.getInstance().addBooking(request.targetBranch, request.otherArguments[0], Integer.parseInt(request.otherArguments[1]), Integer.parseInt(request.otherArguments[2]));
     }
 
     private static void addVehicle(Request request) {
@@ -35,7 +48,7 @@ public class Action {
     }
 
     private static void addBranch(Request request) {
-        Branch.getInstance().addBranch(request.targetBranch, request.otherArguments);
+        BranchHelper.getInstance().addBranch(request.targetBranch, request.otherArguments);
     }
 
     static private Map<String, ActionType> actionTypeMap;

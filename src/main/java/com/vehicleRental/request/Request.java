@@ -1,8 +1,5 @@
 package com.vehicleRental.request;
 
-import com.vehicleRental.ActionType;
-import com.vehicleRental.Branch;
-
 public class Request {
     public String actionType;
     public String targetBranch;
